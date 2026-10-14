@@ -34,7 +34,10 @@ includeProjects('GPL')
  * Include miscellaneous support modules
  *******************************************************************************************/
 includeProject('docker', '.', true)
-includeProject('Doclets', 'GhidraBuild/BuildFiles', true)
+// Gradle 9.3 may lose the closure-based include before distribution.gradle is evaluated.
+// Keep this build-critical project explicit.
+include ':Doclets'
+project(':Doclets').projectDir = file('GhidraBuild/BuildFiles/Doclets')
 includeProject('LaunchSupport', 'GhidraBuild', true)
 includeProject('MarkdownSupport', 'GhidraBuild', true)
 includeProject('Skeleton', 'GhidraBuild', true)

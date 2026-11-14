@@ -51,6 +51,11 @@ DBG_CXXFLAGS=-g -Wall -Wno-sign-compare
 
 # Optimization flags
 OPT_CXXFLAGS=-O2 -Wall -Wno-sign-compare
+# LLVM=1: clang, -O3 and full (non thin) LTO linked by lld
+ifeq ($(LLVM),1)
+CXX=clang++ -std=c++11
+OPT_CXXFLAGS=-O3 -flto=full -fuse-ld=lld -Wall -Wno-sign-compare
+endif
 
 YACC=bison
 

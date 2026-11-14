@@ -273,7 +273,10 @@ model {
 			else if (b.toolChain in Clang) {
 				b.cppCompiler.args "-std=c++11"
 				b.cppCompiler.args "-Wall"
-				b.cppCompiler.args "-O2"			// for DEBUG, comment this line out
+				b.cppCompiler.args "-O3"
+				// full (non-thin) LTO, linked by lld (aphrody-labs)
+				b.cppCompiler.args "-flto=full"
+				b.linker.args "-flto=full", "-fuse-ld=lld"
 				// b.cppCompiler.args "-g"			// for DEBUG, uncomment	this line
 				b.cppCompiler.args "-Wno-sign-compare"
 				b.cppCompiler.args "-w"

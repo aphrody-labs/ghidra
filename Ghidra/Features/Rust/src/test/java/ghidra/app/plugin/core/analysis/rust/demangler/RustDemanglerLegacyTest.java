@@ -84,6 +84,47 @@ public class RustDemanglerLegacyTest {
 	}
 
 	@Test
+	public void legacy_unterminatedEscapeDoesNotThrow() {
+		assertEquals("a::b$c", RustDemanglerLegacy.demangle("_ZN1a3b$cE"));
+	}
+
+	@Test
+	public void legacy_malformedUnicodeEscapeKeptVerbatim() {
+		assertEquals("a::x$uZZ$y", RustDemanglerLegacy.demangle("_ZN1a7x$uZZ$yE"));
+		assertEquals("a::x$u$y", RustDemanglerLegacy.demangle("_ZN1a5x$u$yE"));
+		assertEquals("a::x$uffffffff$y",
+			RustDemanglerLegacy.demangle("_ZN1a13x$uffffffff$yE"));
+	}
+
+	@Test
+	public void legacy_supplementaryCodePoint() {
+		assertEquals("a::\uD83D\uDE00", RustDemanglerLegacy.demangle("_ZN1a8$u1f600$E"));
+	}
+
+	@Test
+	public void legacy_macOsAndWindowsPrefixes() {
+		assertEquals("foo::bar", RustDemanglerLegacy.demangle("__ZN3foo3barE"));
+		assertEquals("foo::bar", RustDemanglerLegacy.demangle("ZN3foo3barE"));
+		assertNull(RustDemanglerLegacy.demangle("_ZN3foo3ba"));
+	}
+
+	@Test
+	public void legacy_hashStrippedOnlyWhenWellFormed() {
+		assertEquals("a::b", RustDemanglerLegacy.demangle("_ZN1a1b17h0123456789abcdefE"));
+		assertEquals("a::b::hXYZ", RustDemanglerLegacy.demangle("_ZN1a1b4hXYZE"));
+	}
+
+	@Test
+	public void isRustMangled_prefixes() {
+		assertTrue(RustDemangler.isRustMangled("_ZN3foo3barE"));
+		assertTrue(RustDemangler.isRustMangled("__ZN3foo3barE"));
+		assertTrue(RustDemangler.isRustMangled("ZN3foo3barE"));
+		assertTrue(RustDemangler.isRustMangled("_RNvC3foo3bar"));
+		assertFalse(RustDemangler.isRustMangled("ZNOT_MANGLED"));
+		assertFalse(RustDemangler.isRustMangled("main"));
+	}
+
+	@Test
 	public void legacy_handlesUnicodeEscapes() {
 		assertEquals("unicode::∂value",
 			RustDemanglerLegacy.demangle("_ZN7unicode12$u2202$valueE"));

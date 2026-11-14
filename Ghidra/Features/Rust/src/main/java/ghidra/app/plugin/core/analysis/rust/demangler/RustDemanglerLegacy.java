@@ -97,26 +97,7 @@ public class RustDemanglerLegacy {
 			// Ghidra uses :: between namespace names
 			element = element.replace("..", "::");
 
-			int k = 0;
-			while (k < element.length()) {
-				if (element.charAt(k) == '$') {
-					int l = k + 1;
-					while (element.charAt(l) != '$') {
-						l += 1;
-					}
-
-					l += 1;
-
-					String inner = element.substring(k, l);
-					if (inner.startsWith("$u")) {
-						int num = Integer.parseInt(element.substring(k + 2, l - 1), 16);
-						char newChar = (char) num;
-						element = element.substring(0, k) + newChar + element.substring(l);
-					}
-				}
-
-				k += 1;
-			}
+			element = unescapeUnicode(element);
 
 			elements.set(j, element);
 		}
@@ -130,6 +111,41 @@ public class RustDemanglerLegacy {
 		}
 
 		return String.join("::", elements);
+	}
+
+	/**
+	 * Replaces each `$uXX$` escape with the character it encodes. Malformed or unknown
+	 * `$...$` sequences (unterminated, non hex, out of range) are kept verbatim instead of
+	 * failing, since symbols come from untrusted binaries.
+	 */
+	static String unescapeUnicode(String element) {
+		if (element.indexOf('$') < 0) {
+			return element;
+		}
+		StringBuilder sb = new StringBuilder();
+		int k = 0;
+		while (k < element.length()) {
+			char c = element.charAt(k);
+			if (c == '$') {
+				int end = element.indexOf('$', k + 1);
+				if (end > k + 2 && element.charAt(k + 1) == 'u') {
+					try {
+						int cp = Integer.parseInt(element.substring(k + 2, end), 16);
+						if (Character.isValidCodePoint(cp)) {
+							sb.appendCodePoint(cp);
+							k = end + 1;
+							continue;
+						}
+					}
+					catch (NumberFormatException e) {
+						// keep verbatim
+					}
+				}
+			}
+			sb.append(c);
+			k++;
+		}
+		return sb.toString();
 	}
 
 	/**

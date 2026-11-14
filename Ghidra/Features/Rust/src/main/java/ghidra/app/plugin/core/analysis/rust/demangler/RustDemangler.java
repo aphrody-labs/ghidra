@@ -127,6 +127,12 @@ public class RustDemangler implements Demangler {
 			return true;
 		}
 
+		// dbghelp on Windows may strip the leading underscore of legacy symbols
+		if (mangled.startsWith("ZN") && mangled.length() > 2 &&
+			Character.isDigit(mangled.charAt(2))) {
+			return true;
+		}
+
 		return false;
 	}
 }

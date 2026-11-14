@@ -135,7 +135,7 @@ public abstract class HeadlessScript extends GhidraScript {
 	 * <p>
 	 * This method, along with the 'getStoredHeadlessValue' method, is useful for debugging and 
 	 * testing the Headless Analyzer (when the user has directly instantiated the HeadlessAnalyzer
-	 * instead of running it from analyzeHeadless.sh or analyzeHeadless.bat). This method is
+	 * instead of running it from analyzeHeadless.sh or analyzeHeadless.ps1). This method is
 	 * intended to allow a HeadlessScript to store variables that reflect the current state of 
 	 * processing (at the time the script is being run). Storing variables in the HeadlessAnalyzer
 	 * instance may be the only way to access the state of processing during cases when the user 
@@ -158,7 +158,7 @@ public abstract class HeadlessScript extends GhidraScript {
 	 * <p>
 	 * This method, along with the 'storedHeadlessValue' method, is useful for debugging and 
 	 * testing the Headless Analyzer (when the user has directly instantiated the HeadlessAnalyzer
-	 * instead of running it from analyzeHeadless.sh or analyzeHeadless.bat). This method is
+	 * instead of running it from analyzeHeadless.sh or analyzeHeadless.ps1). This method is
 	 * intended to allow a HeadlessScript to store variables that reflect the current state of 
 	 * processing (at the time the script is being run). Storing variables in the HeadlessAnalyzer
 	 * instance may be the only way to access the state of processing during cases when the user 

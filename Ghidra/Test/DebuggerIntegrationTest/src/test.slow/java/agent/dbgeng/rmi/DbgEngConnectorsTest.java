@@ -72,16 +72,6 @@ public class DbgEngConnectorsTest extends AbstractRmiConnectorsTest {
 	}
 
 	@Test
-	public void testLocalDbgWithImageBat() throws Exception {
-		try (LaunchResult result = doLaunch("dbgeng (.bat)", Map.ofEntries(
-			Map.entry("env:OPT_TARGET_IMG", chooseImage()),
-			Map.entry("env:OPT_PYTHON_EXE",
-				new PathIsFile(Path.of(getPythonCmd())))))) {
-			checkResult(result);
-		}
-	}
-
-	@Test
 	public void testLocalDbgSetup() throws Exception {
 		pipOob("protobuf==3.19.0");
 		try (LaunchResult result = doLaunch("dbgeng", Map.ofEntries(
@@ -93,25 +83,6 @@ public class DbgEngConnectorsTest extends AbstractRmiConnectorsTest {
 				containsString("Would you like to install"));
 		}
 		try (LaunchResult result = doLaunch("dbgeng", Map.ofEntries(
-			Map.entry("env:OPT_TARGET_IMG", chooseImage()),
-			Map.entry("env:OPT_PYTHON_EXE",
-				new PathIsFile(Path.of(getPythonCmd())))))) {
-			checkResult(result);
-		}
-	}
-
-	@Test
-	public void testLocalDbgSetupBat() throws Exception {
-		pipOob("protobuf==3.19.0");
-		try (LaunchResult result = doLaunch("dbgeng (.bat)", Map.ofEntries(
-			Map.entry("env:OPT_TARGET_IMG", chooseImage()),
-			Map.entry("env:OPT_PYTHON_EXE",
-				new PathIsFile(Path.of(getPythonCmd())))))) {
-			assertThat(result.exception(), instanceOf(EarlyTerminationException.class));
-			assertThat(result.sessions().get("Shell").content(),
-				containsString("Would you like to install"));
-		}
-		try (LaunchResult result = doLaunch("dbgeng (.bat)", Map.ofEntries(
 			Map.entry("env:OPT_TARGET_IMG", chooseImage()),
 			Map.entry("env:OPT_PYTHON_EXE",
 				new PathIsFile(Path.of(getPythonCmd())))))) {

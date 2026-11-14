@@ -943,7 +943,7 @@ public class GhidraJarBuilder implements GhidraLaunchable {
 	}
 
 	/**
-	 * Entry point for buildGhidraJar.bat.
+	 * Entry point for buildGhidraJar.ps1.
 	 */
 	@Override
 	public void launch(GhidraApplicationLayout layout, String[] args) throws IOException {

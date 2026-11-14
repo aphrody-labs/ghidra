@@ -29,7 +29,7 @@
 //    This is an example to show how run this script in headless mode against a local non-shared
 //    project
 //   
-//    <ghidra_install>/support/analyzeHeadless.bat/sh c:/MyGhidraProjectFolder 
+//    <ghidra_install>/support/analyzeHeadless.ps1/sh c:/MyGhidraProjectFolder 
 //     MyProjectName/OptionalFolderContainingDestProgram -process DestinationProgram.exe -postScript 
 //     MyOptionsSetupScript -postScript AutoVersionTrackingScript.java "/FolderContainingSession" 
 //     "MySessionName" "/OptionalFolderContainingSourceProgram/SourceProgram.exe"
@@ -73,7 +73,7 @@
 //
 //     This is an example command line for running this script in headless shared project mode:
 //   
-//    <ghidra_install>/support/analyzeHeadless.bat/sh 
+//    <ghidra_install>/support/analyzeHeadless.ps1/sh 
 //     ghidra://localhost:13100/MyProjectName/OptionalFolderContainingDestProgram -process 
 //     DestinationProgram.exe -postScript MyOptionsSetupScript -postScript 
 //     AutoVersionTrackingScript.java "/FolderContainingSession" 

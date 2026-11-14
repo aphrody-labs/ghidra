@@ -18,7 +18,7 @@ All but the last are written in Python 3, and all communicate with the GUI via a
 
 At the highest level, each agent has four elements (ok, a somewhat arbitrary division, but...):
 
-* [`debugger-launchers`](../../../Ghidra/Debug/Debugger-agent-drgn/data/debugger-launchers) &ndash; A set of launchers, often a mixture of `.bat`,`.sh`, and sometime `.py` scripts
+* [`debugger-launchers`](../../../Ghidra/Debug/Debugger-agent-drgn/data/debugger-launchers) &ndash; A set of launchers, often a mixture of `.ps1`,`.sh`, and sometime `.py` scripts
 * [`schema.xml`](../../../Ghidra/Debug/Debugger-agent-drgn/src/main/py/src/ghidradrgn/schema.xml) &ndash; An object-model schema. (While expressed in XML, this is not an "XML schema".)
 * [`src/ghidradrgn`](../../../Ghidra/Debug/Debugger-agent-drgn/src/main/py/src/ghidradrgn) &ndash; Python files for architecture, commands, hooks, methods, and common utility functions
 * [`build.gradle`](../../../Ghidra/Debug/Debugger-agent-drgn/build.gradle) &ndash; Build logic
@@ -38,8 +38,8 @@ For these debuggers, the launcher runs the native debugger and instructs it to l
 The dbgeng agent inverts this pattern, i.e. the agent is a Python application that uses the **Pybag** package to access the native *kd* interface over COM.
 **drgn** follows this pattern.
 
-That said, a quick look at the launchers in the **dbgeng** project (under [`debugger-launchers`](../../../Ghidra/Debug/Debugger-agent-dbgeng/data/debugger-launchers)) shows `.bat` files, each of which calls a `.py` file in [`data/support`](../../../Ghidra/Debug/Debugger-agent-dbgeng/data/support). 
-As **drgn** is a Linux-only debugger, we need to convert the `.bat` examples to `.sh`. 
+That said, a quick look at the launchers in the **dbgeng** project (under [`debugger-launchers`](../../../Ghidra/Debug/Debugger-agent-dbgeng/data/debugger-launchers)) shows `.ps1` files, each of which calls a `.py` file in [`data/support`](../../../Ghidra/Debug/Debugger-agent-dbgeng/data/support). 
+As **drgn** is a Linux-only debugger, we need to convert the `.ps1` examples to `.sh`. 
 Luckily, the conversion is pretty simple: most line annotations use `#` in place of `::` and environment variables are referenced using `$VAR` in place of `%VAR%`.
 
 The syntax of the `.sh` is typical of any *\*nix* shell. 

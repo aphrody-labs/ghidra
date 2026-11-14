@@ -34,8 +34,8 @@ To install an official pre-built multi-platform Ghidra release:
     Downloading either of the files named "Source Code" is not correct for this step.
 * Extract the Ghidra release file
   - **NOTE:** Do not extract on top of an existing installation
-* Launch Ghidra: `./ghidraRun` (`ghidraRun.bat` for Windows)
-  - or launch [PyGhidra][pyghidra]: `./support/pyghidraRun` (`support\pyghidraRun.bat` for Windows)
+* Launch Ghidra: `./ghidraRun` (`ghidraRun.ps1` for Windows)
+  - or launch [PyGhidra][pyghidra]: `./support/pyghidraRun` (`support\pyghidraRun.ps1` for Windows)
 
 For additional information and troubleshooting tips about installing and running a Ghidra release, 
 please refer to the [Getting Started][gettingstarted] document which can be found at the root of a 
@@ -68,7 +68,7 @@ repository: `git clone https://github.com/NationalSecurityAgency/ghidra.git`
 
 ##### Download additional build dependencies into source repository:
 **NOTE:** If an Internet connection is available and you did not install Gradle, the 
-`./gradlew` (or `gradlew.bat`) command may be used in place of the `gradle` command in the following
+`./gradlew` (or `gradlew.ps1`) command may be used in place of the `gradle` command in the following
 instructions.
 
 ```

@@ -185,7 +185,7 @@ be found in `<GhidraInstallDir>` once extraction of the distribution file is com
 * __support:__ Contains files useful for debugging Ghidra, running Ghidra in advanced modes, and 
   controlling how Ghidra launches.
 * __docs:__ Contains documentation for Ghidra, such as release notes, API files, tutorials, etc.
-* __ghidraRun(.bat):__ Script used to launch Ghidra.
+* __ghidraRun(.ps1):__ Script used to launch Ghidra.
 * __LICENSE:__ Ghidra license information.
 * __licenses:__ Contains licenses used by Ghidra.
 * __bom.json:__ Software Bill of Materials (SBOM) in CycloneDX JSON format.
@@ -238,7 +238,7 @@ gradle buildNatives
 If you are connected to the Internet and do not have Gradle installed, execute:
 ```bash
 cd <GhidraInstallDir>/support/gradle/
-./gradlew(.bat) buildNatives
+./gradlew(.ps1) buildNatives
 ```
 
 When the commands successfully complete, Ghidra will contain newly built native binaries in
@@ -249,7 +249,7 @@ existing pre-built native binaries in the `os/<platform>/` subdirectories.
 
 ### GUI Mode
 1. Navigate to `<GhidraInstallDir>`
-2. Run `ghidraRun.bat` (Windows) or `ghidraRun` (Linux or macOS)
+2. Run `ghidraRun.ps1` (Windows) or `ghidraRun` (Linux or macOS)
 
 If Ghidra failed to launch, see the [Troubleshooting](#troubleshooting-and-help) section.
 
@@ -280,7 +280,7 @@ Ghidra has integrated the popular Pyhidra extension to enable native CPython 3 s
 the box. To enable this support, Ghidra must be launched from a Python environment using special
 launch scripts.
 1. Navigate to `<GhidraInstallDir>/support/`
-2. Run `pyghidraRun.bat` (Windows) or `pyghidraRun` (Linux or macOS).
+2. Run `pyghidraRun.ps1` (Windows) or `pyghidraRun` (Linux or macOS).
 
 If the `pyghidra` Python module has not yet been installed, the script will offer to 
 install it for you, along with its dependencies. If you prefer to install it manually, execute:

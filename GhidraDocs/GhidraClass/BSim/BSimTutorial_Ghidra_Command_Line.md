@@ -41,7 +41,7 @@ To analyze the files in Linux, execute the following commands in a shell.
 cd <ghidra_install_dir>/support
 ./analyzeHeadless <ghidra_project_dir> postgres_object_files -import ~/postgres_object_files/*
 ```
-(On windows, use ``analyzeHeadless.bat`` and adjust paths accordingly.)
+(On windows, use ``analyzeHeadless.ps1`` and adjust paths accordingly.)
 
 This will create a local Ghidra project called ``postgres_object_files`` in the directory ``<ghidra_project_dir>``. 
 

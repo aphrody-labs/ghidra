@@ -16,7 +16,7 @@
 """
 This file holds utilities required by Python-based launch scripts. At
 the moment, that includes only the launchers on Windows, since they're
-just .bat files that invoke the .py file interactively. They require
+just .ps1 files that invoke the .py file interactively. They require
 this utility to set up the PYTHONPATH before importing the actual
 connector's Python code.
 

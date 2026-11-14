@@ -68,16 +68,6 @@ public class X64dbgConnectorsTest extends AbstractRmiConnectorsTest {
 	}
 
 	@Test
-	public void testLocalX64dbgWithImageBat() throws Exception {
-		try (LaunchResult result = doLaunch("x64dbg (.bat)", Map.ofEntries(
-			Map.entry("env:OPT_TARGET_IMG", chooseImage()),
-			Map.entry("env:OPT_PYTHON_EXE",
-				new PathIsFile(Path.of(getPythonCmd())))))) {
-			checkResult(result);
-		}
-	}
-
-	@Test
 	public void testLocalX64dbgSetup() throws Exception {
 		pipOob("protobuf==3.19.0");
 		try (LaunchResult result = doLaunch("x64dbg", Map.ofEntries(
@@ -92,25 +82,6 @@ public class X64dbgConnectorsTest extends AbstractRmiConnectorsTest {
 		try (LaunchResult result = doLaunch("x64dbg", Map.ofEntries(
 			Map.entry("env:OPT_TARGET_IMG", chooseImage()),
 			Map.entry("env:OPT_X64DBG_EXE", new PathIsFile(Path.of("x64dbg.exe"))),
-			Map.entry("env:OPT_PYTHON_EXE",
-				new PathIsFile(Path.of(getPythonCmd())))))) {
-			checkResult(result);
-		}
-	}
-
-	@Test
-	public void testLocalX64dbgSetupBat() throws Exception {
-		pipOob("protobuf==3.19.0");
-		try (LaunchResult result = doLaunch("x64dbg (.bat)", Map.ofEntries(
-			Map.entry("env:OPT_TARGET_IMG", chooseImage()),
-			Map.entry("env:OPT_PYTHON_EXE",
-				new PathIsFile(Path.of(getPythonCmd())))))) {
-			assertThat(result.exception(), instanceOf(EarlyTerminationException.class));
-			assertThat(result.sessions().get("Shell").content(),
-				containsString("Would you like to install"));
-		}
-		try (LaunchResult result = doLaunch("x64dbg (.bat)", Map.ofEntries(
-			Map.entry("env:OPT_TARGET_IMG", chooseImage()),
 			Map.entry("env:OPT_PYTHON_EXE",
 				new PathIsFile(Path.of(getPythonCmd())))))) {
 			checkResult(result);

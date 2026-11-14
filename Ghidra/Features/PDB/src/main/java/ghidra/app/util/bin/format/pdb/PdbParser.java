@@ -226,7 +226,7 @@ public class PdbParser {
 			throw new PdbException(
 				"\n.pdb files may only be loaded when running Windows. To load PDBs\n" +
 					"on other platforms, use Windows to pre-dump the .pdb file to .pdb.xml\n" +
-					"using 'CreatePdbXmlFilesScript.java' or 'createPdbXmlFiles.bat'.");
+					"using 'CreatePdbXmlFilesScript.java' or 'createPdbXmlFiles.ps1'.");
 		}
 
 		if (onWindows && isXML) {

@@ -32,7 +32,7 @@
   * [Client/Server connection errors](#clientserver-connection-errors)
   * [MS Windows - ERROR Incorrect function (WindowsWatchService)](#ms-windows---error-incorrect-function-windowswatchservice)
   * [MS Windows - ERROR Missing Temp Directory](#ms-windows---error-missing-temp-directory)
-  * [MS Windows 7 and 8 - ghidraSvr.bat, svrInstall.bat, or svrUninstall.bat Error](#ms-windows-7-and-8---ghidrasvrbat-svrinstallbat-or-svruninstallbat-error)
+  * [MS Windows 7 and 8 - ghidraSvr.ps1, svrInstall.ps1, or svrUninstall.ps1 Error](#ms-windows-7-and-8---ghidrasvrbat-svrinstallbat-or-svruninstallbat-error)
   * [Linux - SELinux must be disabled](#linux---selinux-must-be-disabled)
   * [Linux - Potential hang from /dev/random depletion](#linux---potential-hang-from-devrandom-depletion)
   * [macOS - Service fails to start](#macos---service-fails-to-start-macos-1014-mojave-and-later)
@@ -224,7 +224,7 @@ To make this trust work, PKI relies on three main elements:
 
 #### PKI Management Tools
 
-* __CertTool__ : Convenience utility provided with Ghidra (`server/certTool`, `server\certTool.bat`) 
+* __CertTool__ : Convenience utility provided with Ghidra (`server/certTool`, `server\certTool.ps1`) 
   which facilitates Certificate Request generation (include Private Key generation, `*.key`) and 
   subsequent PKCS#12 Key Store (`*.p12`) generation.  Also provided is the ability to generate a 
   private key and self-signed certificate as a PKCS#12 Key Store (`*.p12`).  During certificate 
@@ -614,7 +614,7 @@ Extreme care must be taken to ensure that any user who starts the Ghidra Server 
 has full access to all directories and files within the root repository directory.
 
 If the Ghidra Server is not already running, it may be started within a console window by running 
-the `ghidraSvr.bat console` command.  When you wish to terminate the server, use the 
+the `ghidraSvr.ps1 console` command.  When you wish to terminate the server, use the 
 `Ctrl-C` key sequence within the server console window and wait for a clean shutdown.
 
 ### Install as Automatic Service (must have Administrator privilege)
@@ -1079,7 +1079,7 @@ wrapper.java.additional.3=-Djava.io.tmpdir=C:\Windows\Temp
 ```
 Be sure to use the next unique sequence number for your _wrapper.java.additional_ entry.
 
-### MS Windows 7 and 8 - ghidraSvr.bat, svrInstall.bat, or svrUninstall.bat Error
+### MS Windows 7 and 8 - ghidraSvr.ps1, svrInstall.ps1, or svrUninstall.ps1 Error
 The following error may occur when attempting to install/uninstall/start/stop/restart the Ghidra 
 Server under MS Windows 7 or 8 even if the user is a member of the Administrator group:
 ```

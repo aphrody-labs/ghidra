@@ -134,7 +134,7 @@ task buildExtension (type: Zip) {
 		exclude 'developer_scripts'
 		exclude '.antProperties.xml'
 		exclude 'gradlew'
-		exclude 'gradlew.bat'
+		exclude 'gradlew.ps1'
 		exclude 'gradle/wrapper/gradle-wrapper.jar'
 		exclude 'gradle/wrapper/gradle-wrapper.properties'
 		

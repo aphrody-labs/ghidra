@@ -146,7 +146,7 @@ public class GhidraGo implements GhidraLaunchable {
 	}
 
 	/**
-	 * Determines the execution platform and executes the appropriate shell/bash script to start 
+	 * Determines the execution platform and executes the appropriate bash/PowerShell script to start 
 	 * Ghidra. 
 	 * @throws IOException in the event that the execution failed
 	 */
@@ -157,7 +157,7 @@ public class GhidraGo implements GhidraLaunchable {
 		if (SystemUtilities.isInDevelopmentMode()) {
 			if (Platform.CURRENT_PLATFORM.getOperatingSystem() == OperatingSystem.WINDOWS) {
 				ghidraRunPath = Path.of(file.getAbsolutePath(),
-					"/RuntimeScripts/ghidraRun.bat");
+					"/RuntimeScripts/ghidraRun.ps1");
 			}
 			else {
 				ghidraRunPath = Path.of(file.getAbsolutePath(),
@@ -166,7 +166,7 @@ public class GhidraGo implements GhidraLaunchable {
 		}
 		else {
 			if (Platform.CURRENT_PLATFORM.getOperatingSystem() == OperatingSystem.WINDOWS) {
-				ghidraRunPath = Path.of(file.getAbsolutePath(), "/../ghidraRun.bat");
+				ghidraRunPath = Path.of(file.getAbsolutePath(), "/../ghidraRun.ps1");
 			}
 			else {
 				ghidraRunPath = Path.of(file.getAbsolutePath(), "/../ghidraRun");
@@ -174,6 +174,10 @@ public class GhidraGo implements GhidraLaunchable {
 		}
 
 		Msg.info(this, "Starting new Ghidra using ghidraRun script at " + ghidraRunPath);
+		if (Platform.CURRENT_PLATFORM.getOperatingSystem() == OperatingSystem.WINDOWS) {
+			return Runtime.getRuntime().exec(
+				new String[] { "pwsh", "-NoProfile", "-File", ghidraRunPath.toString() });
+		}
 		return Runtime.getRuntime().exec(new String[] { ghidraRunPath.toString() });
 	}
 }

@@ -24,7 +24,7 @@ To build the default ghidra.jar file run the appropriate buildGhidraJar script f
 line:
 
 Windows:
-	buildGhidraJar.bat [-srczip singleSrcZipFileName]
+	buildGhidraJar.ps1 [-srczip singleSrcZipFileName]
 
 Linux or Mac:
 	buildGhidraJar [-srczip singleSrcZipFileName]

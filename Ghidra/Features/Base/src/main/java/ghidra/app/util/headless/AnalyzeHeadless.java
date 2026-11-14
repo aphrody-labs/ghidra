@@ -109,7 +109,7 @@ public class AnalyzeHeadless implements GhidraLaunchable {
 	private static final int EXIT_CODE_ERROR = 1;
 
 	/**
-	 * The entry point of 'analyzeHeadless.bat'. Parses the command line arguments to the script
+	 * The entry point of 'analyzeHeadless.ps1'. Parses the command line arguments to the script
 	 * and takes the appropriate headless actions.
 	 * 
 	 * @param args Detailed list of arguments is in 'analyzeHeadlessREADME.html'

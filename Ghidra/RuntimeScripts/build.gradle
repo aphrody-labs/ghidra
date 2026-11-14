@@ -28,11 +28,11 @@ rootProject.assembleDistribution {
 	}
 	
 	from (this.project.file("ghidraRun"))
-	from (this.project.file("ghidraRun.bat"))
+	from (this.project.file("ghidraRun.ps1"))
 	
 	from (rootProject.projectDir) {
 		include "gradlew"
-		include "gradlew.bat"
+		include "gradlew.ps1"
 		into "support/gradle"
 	}
 }
